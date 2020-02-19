@@ -1,5 +1,5 @@
 import {
-  FETCH_ALL_IMAGES, STORE_ALL_IMAGES, VIEW_SELECTED_IMAGE, RESET_SELECTED_IMAGE,
+  FETCH_ALL_IMAGES, STORE_ALL_IMAGES, VIEW_SELECTED_IMAGE, RESET_SELECTED_IMAGE, UPLOAD_IMAGE,
 } from '../constants/attributeLibrary';
 
 export const fetchAllImages = () => ({
@@ -18,4 +18,9 @@ export const viewSelectedImage = (data) => ({
 
 export const resetSelectedImage = () => ({
   type: RESET_SELECTED_IMAGE,
+});
+
+export const uploadImage = (data) => ({
+  type: UPLOAD_IMAGE,
+  data,
 });

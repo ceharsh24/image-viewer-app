@@ -1,5 +1,5 @@
 import {
-  STORE_ALL_IMAGES, VIEW_SELECTED_IMAGE, RESET_SELECTED_IMAGE,
+  STORE_ALL_IMAGES, VIEW_SELECTED_IMAGE, RESET_SELECTED_IMAGE, UPLOAD_IMAGE,
 } from '../constants/attributeLibrary';
 
 const initialState = {
@@ -24,6 +24,11 @@ export default function imageReducers(state = initialState, action) {
       return {
         ...state,
         selectedImage: {},
+      };
+    case UPLOAD_IMAGE:
+      return {
+        ...state,
+        listOfAllImages: [data, ...state.listOfAllImages],
       };
     default:
       return state;

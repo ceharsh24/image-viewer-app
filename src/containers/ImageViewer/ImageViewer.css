@@ -7,3 +7,8 @@
 .image-clear-button {
   margin: 20px 0px;
 }
+
+.custom-upload-bar {
+  margin: 30px auto;
+  width: 80%;
+}
