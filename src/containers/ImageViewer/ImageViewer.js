@@ -94,7 +94,8 @@ class ImageViewer extends Component {
           <Modal.Body>
             <input
               className="form-control"
-              onChange={(event) => this.setState({ authorName: event.target.value })}
+              onChange={(event) => event.target.value.trim().length !== 0
+                && this.setState({ authorName: event.target.value.trim() })}
               placeholder="Enter Author Name"
             />
           </Modal.Body>
