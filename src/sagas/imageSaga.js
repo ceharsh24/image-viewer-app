@@ -4,14 +4,13 @@ import { FETCH_ALL_IMAGES } from '../constants/attributeLibrary';
 
 export default function* fetchAllImages() {
   let responseBody;
-  try {
-    const response = yield call(fetch, 'https://picsum.photos/v2/list');
+  const response = yield call(fetch, 'https://picsum.photos/v2/list');
+  if (response && response.status === 200) {
     responseBody = yield response.json();
-  } catch (e) {
-    // ToDo: Error Handling
-    console.error(e);
+    yield put(storeAllImages(responseBody));
+  } else {
+    console.error('Error while Fetching Data');
   }
-  yield put(storeAllImages(responseBody));
 }
 
 export function* watchImageCommands() {
