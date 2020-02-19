@@ -1,0 +1,11 @@
+.custom-navbar {
+  background-color: rgba(41, 41, 41, 0.75);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+.custom-navbar .navbar-brand {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+}

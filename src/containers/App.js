@@ -1,5 +1,9 @@
 import React from 'react';
 
+// Component
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
+
 class App extends React.Component {
   componentDidMount() {
 
@@ -7,7 +11,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>App Component</div>
+      <>
+        <Header />
+        <Footer />
+      </>
     );
   }
 }
