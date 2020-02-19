@@ -1,67 +1,113 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Col, Image, Button } from 'react-bootstrap';
+import {
+  Col, Image, Button, Modal,
+} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 import { resetSelectedImage, uploadImage } from '../../actions/imageActions';
 
 import './ImageViewer.css';
 
-const ImageViewer = (props) => {
-  const { selectedImage } = props;
+class ImageViewer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      authorName: '',
+      isModalOpen: false,
+      fileURL: '',
+    };
+  }
 
-  const uploadFile = (event) => {
+  handleClose = () => {
+    this.setState({ isModalOpen: false });
+    this.uploadFile();
+  }
+
+  handleShow = (event) => {
     if (event.target.files[0] != null) {
-      const selectedImage1 = {
-        id: Math.random(),
-        author: event.target.files[0].name,
-        download_url: URL.createObjectURL(event.target.files[0]),
-      };
-      props.uploadImage(selectedImage1);
+      this.setState({
+        isModalOpen: true,
+        authorName: event.target.files[0].name,
+        fileURL: URL.createObjectURL(event.target.files[0]),
+      });
     }
+  }
+
+  uploadFile = () => {
+    const selectedImage = {
+      id: Math.random(),
+      author: this.state.authorName,
+      download_url: this.state.fileURL,
+    };
+    this.props.uploadImage(selectedImage);
   };
 
-  return (
-    <Col md={6} className="display-image-viewer">
-      {Object.entries(selectedImage).length === 0
-        ? (<span> No Image Selected</span>)
-        : (
-          <>
-            <h3 className="image-header">{selectedImage.author}</h3>
-            <Image
-              src={selectedImage.download_url}
-              key={selectedImage.id}
-              alt={selectedImage.author}
-              height="300"
-              width="450"
-              className="display-image"
-            />
-            <div>
-              <Button
-                className="image-clear-button"
-                variant="outline-danger"
-                onClick={() => props.resetSelectedImage()}
-              >
-                Clear
-              </Button>
+  render() {
+    const { selectedImage } = this.props;
+    return (
+      <>
+        <Col md={6} className="display-image-viewer">
+          {Object.entries(selectedImage).length === 0
+            ? (<span> No Image Selected</span>)
+            : (
+              <>
+                <h3 className="image-header">{selectedImage.author}</h3>
+                <Image
+                  src={selectedImage.download_url}
+                  key={selectedImage.id}
+                  alt={selectedImage.author}
+                  height="300"
+                  width="450"
+                  className="display-image"
+                />
+                <div>
+                  <Button
+                    className="image-clear-button"
+                    variant="outline-danger"
+                    onClick={() => this.props.resetSelectedImage()}
+                  >
+                    Clear
+                  </Button>
+                </div>
+              </>
+            )}
+          <div className="input-group custom-upload-bar">
+            <div className="custom-file">
+              <input
+                type="file"
+                className="custom-file-input"
+                id="uploadFile"
+                onChange={this.handleShow}
+                accept="image/x-png,image/gif,image/jpeg"
+              />
+              <label className="custom-file-label" nesting="uploadFile">Choose file</label>
             </div>
-          </>
-        )}
-      <div className="input-group custom-upload-bar">
-        <div className="custom-file">
-          <input
-            type="file"
-            className="custom-file-input"
-            id="uploadFile"
-            onChange={uploadFile}
-            accept="image/x-png,image/gif,image/jpeg"
-          />
-          <label className="custom-file-label" nesting="uploadFile">Choose file</label>
-        </div>
-      </div>
-    </Col>
-  );
-};
+          </div>
+        </Col>
+
+        {/* Modal Window to enter the username or default is set to file name */}
+        <Modal show={this.state.isModalOpen} onHide={this.handleClose} animation={false} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Author Name</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <input
+              className="form-control"
+              onChange={(event) => this.setState({ authorName: event.target.value })}
+              placeholder="Enter Author Name"
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={this.handleClose}>
+              Save
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
+}
 
 const mapStateToProps = (state) => ({
   selectedImage: state.images.selectedImage,

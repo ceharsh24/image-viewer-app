@@ -12,9 +12,6 @@ import ImageList from './ImageList/ImageList';
 import ImageViewer from './ImageViewer/ImageViewer';
 import Footer from './Footer/Footer';
 
-const propTypes = {
-  fetchAllImages: PropTypes.func.isRequired,
-};
 class App extends Component {
   componentDidMount() {
     this.props.fetchAllImages();
@@ -38,5 +35,7 @@ const mapDispatchToProps = {
   fetchAllImages,
 };
 
-App.propTypes = propTypes;
+App.propTypes = {
+  fetchAllImages: PropTypes.func.isRequired,
+};
 export default connect(null, mapDispatchToProps)(App);
