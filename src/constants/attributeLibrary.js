@@ -1,0 +1,3 @@
+export const FETCH_ALL_IMAGES = 'FETCH_ALL_IMAGES';
+export const STORE_ALL_IMAGES = 'STORE_ALL_IMAGES';
+export const VIEW_IMAGE = 'VIEW_IMAGE';
