@@ -12,3 +12,9 @@
   margin: 30px auto;
   width: 80%;
 }
+
+.form-info {
+  font-size: 12px;
+  font-weight: 300;
+  color: grey;
+}

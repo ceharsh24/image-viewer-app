@@ -98,6 +98,7 @@ class ImageViewer extends Component {
                 && this.setState({ authorName: event.target.value.trim() })}
               placeholder="Enter Author Name"
             />
+            <span className="form-info">Provide a name or it will take filename as an author name.</span>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={this.handleClose}>
