@@ -1,0 +1,9 @@
+.display-image-viewer {
+  align-items: center;
+  text-align: center;
+  margin: auto;
+}
+
+.image-clear-button {
+  margin: 20px 0px;
+}

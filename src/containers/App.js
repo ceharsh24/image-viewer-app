@@ -9,6 +9,7 @@ import { fetchAllImages } from '../actions/imageActions';
 // Component
 import Header from './Header/Header';
 import ImageList from './ImageList/ImageList';
+import ImageViewer from './ImageViewer/ImageViewer';
 import Footer from './Footer/Footer';
 
 const propTypes = {
@@ -25,6 +26,7 @@ class App extends Component {
         <Header />
         <Row>
           <ImageList />
+          <ImageViewer />
         </Row>
         <Footer />
       </>
