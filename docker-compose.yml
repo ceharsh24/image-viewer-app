@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  image-viewer:
+    build:
+      context: './'
+      dockerfile: Dockerfile
+    image: image-viewer
+    ports:
+      - '4000:4000'

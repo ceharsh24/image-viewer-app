@@ -9,8 +9,8 @@ export default function* fetchAllImages() {
     responseBody = yield response.json();
     yield put(storeAllImages(responseBody));
   } catch (e) {
-    // eslint-disable-next-line no-console
     // Todo: Need to imlement Failure action
+    // eslint-disable-next-line no-console
     console.error('Error while Fetching Data');
   }
 }
