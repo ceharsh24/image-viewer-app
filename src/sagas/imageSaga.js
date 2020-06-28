@@ -4,11 +4,13 @@ import { FETCH_ALL_IMAGES } from '../constants/attributeLibrary';
 
 export default function* fetchAllImages() {
   let responseBody;
-  const response = yield call(fetch, 'https://picsum.photos/v2/list');
-  if (response && response.status === 200) {
+  try {
+    const response = yield call(fetch, 'https://picsum.photos/v2/list');
     responseBody = yield response.json();
     yield put(storeAllImages(responseBody));
-  } else {
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    // Todo: Need to imlement Failure action
     console.error('Error while Fetching Data');
   }
 }

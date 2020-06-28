@@ -5,23 +5,24 @@ import PropTypes from 'prop-types';
 
 import { viewSelectedImage } from '../../actions/imageActions';
 
-import './imageList.css';
+import './ImageList.css';
 
 const ImageList = (props) => (
   <Col md={6} className="display-image-list">
     <h3 className="image-header">Image List</h3>
-    {props.listOfAllImages != null && props.listOfAllImages.map((eachImage) => (
-      <div key={eachImage.id} className="each-image">
-        <Image
-          src={eachImage.download_url}
-          alt={eachImage.author}
-          height="300"
-          width="450"
-          className="display-image"
-          onClick={() => props.viewSelectedImage(eachImage)}
-        />
-      </div>
-    ))}
+    {props.listOfAllImages != null
+      && props.listOfAllImages.map((eachImage) => (
+        <div key={eachImage.id} className="each-image">
+          <Image
+            src={eachImage.download_url}
+            alt={eachImage.author}
+            height="300"
+            width="450"
+            className="display-image"
+            onClick={() => props.viewSelectedImage(eachImage)}
+          />
+        </div>
+      ))}
   </Col>
 );
 

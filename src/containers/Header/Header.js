@@ -1,11 +1,7 @@
 import React from 'react';
 
-import './header.css';
+import './Header.css';
 
-const Header = () => (
-  <div className="custom-navbar">
-    Technical Exercise
-  </div>
-);
+const Header = () => <div className="custom-navbar">Technical Exercise</div>;
 
 export default Header;
